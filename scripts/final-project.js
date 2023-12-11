@@ -1,5 +1,5 @@
 
-const apiUrl = 'http://www.omdbapi.com/?i=tt3896198&apikey=9fdd5f05'; // Replace with your OMDB API key
+const apiUrl = 'https://www.omdbapi.com/?i=tt3896198&apikey=9fdd5f05'; 
 
 async function getMovieData(title) {
     try {
@@ -22,12 +22,16 @@ function displayMovieDataError() {
 
 function displayMovieData(movie) {
     const movieContainer = document.getElementById('movieContainer');
+    
+    // Use the map method to format genres as a string
+    const formattedGenres = movie.Genre.split(',').map(genre => genre.trim()).join(', ');
+
     movieContainer.innerHTML = `
         <h2>${movie.Title}</h2>
         <img src="${movie.Poster}" alt="${movie.Title} Poster">
         <p>${movie.Plot}</p>
         <p>Year: ${movie.Year}</p>
-        <p>Genre: ${movie.Genre}</p>
+        <p>Genre: ${formattedGenres}</p>
         <p>Director: ${movie.Director}</p>
         <p>IMDb Rating: ${movie.imdbRating}</p>
     `;
